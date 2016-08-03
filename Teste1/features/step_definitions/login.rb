@@ -18,9 +18,9 @@ When(/^User Click on Sign in Button$/) do
 end
 
 Then(/^User should see the message "([^"]*)"$/) do |message|
-  info = $browser.div(:class => 'alert alert-info').text
+  alert = $browser.div(:class => 'alert alert-info').text
 
-  if message != info
+  if message != alert
     fail test
   end
 
