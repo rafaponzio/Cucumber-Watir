@@ -18,7 +18,10 @@ When(/^User Click on Sign in Button$/) do
 end
 
 Then(/^User should see the message "([^"]*)"$/) do |message|
-  if message != 'Signed in successfully.'
+  info = $browser.div(:class => 'alert alert-info').text
+
+  if message != info
     fail test
   end
+
 end
