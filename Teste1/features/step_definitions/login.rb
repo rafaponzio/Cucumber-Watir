@@ -1,4 +1,3 @@
-
 Given(/^User is on Home Page$/) do
   $browser.goto "http://qa-test.avenuecode.com/"
 end
@@ -19,9 +18,9 @@ end
 
 Then(/^User should see the message "([^"]*)"$/) do |message|
   alert = $browser.div(:class => 'alert alert-info').text
-
-  if message != alert
-    fail test
-  end
-
+  puts expect(alert).to eq(message)
+#alert.include?(message).expect == true
+  #if message != alert
+  #  fail test
+  #end
 end
