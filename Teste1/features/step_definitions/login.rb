@@ -1,15 +1,16 @@
+login_page = LoginPage.new
+common_page = CommonPage.new
+
 Given(/^User is on Home Page$/) do
-  $browser.goto "http://qa-test.avenuecode.com/"
+  common_page.navigate "http://qa-test.avenuecode.com/"
 end
 
 When(/^User Navigate to Sign in page$/) do
-  $browser.link(:text => 'Sign In').click
+  click_sign_in
 end
 
-When(/^User enters Email and Password$/) do
-@login = Login.new
-@login.set_user_pass 'f1559373@mvrht.com', 'teste1222'
-  #@browser.screenshot.save 'screenshot.png'
+When(/^User enters Email "([^"]*)" and Password "([^"]*)"$/) do |email, pass|
+  login_page.set_user_pass email, pass
 end
 
 When(/^User Click on Sign in Button$/) do
