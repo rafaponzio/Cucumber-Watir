@@ -3,9 +3,13 @@ class CommonPage
 ###Main Definitions                                                                      ###
 ############################################################################################
 
-def navigate(url)
-    $browser.goto url    
-end
+    def navigate(url)
+        $browser.goto url    
+    end
+
+    def click_link(text)
+        $browser.link(text: text).when_present.click
+    end
 
 ############################################################################################
 ### Locators                                                                             ###

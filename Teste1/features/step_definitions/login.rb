@@ -6,22 +6,17 @@ Given(/^User is on Home Page$/) do
 end
 
 When(/^User Navigate to Sign in page$/) do
-  click_sign_in
+  login_page.click_sign_in
 end
 
 When(/^User enters Email "([^"]*)" and Password "([^"]*)"$/) do |email, pass|
-  login_page.set_user_pass email, pass
+  login_page.set_user_pass(email, pass)
 end
 
 When(/^User Click on Sign in Button$/) do
-  $browser.button(:name => 'commit').click
+  login_page.click_sign_in_button
 end
 
 Then(/^User should see the message "([^"]*)"$/) do |message|
-  alert = $browser.div(:class => 'alert alert-info').text
-  puts expect(alert).to eq(message)
-#alert.include?(message).expect == true
-  #if message != alert
-  #  fail test
-  #end
+  login_page.check_alert_message(message)
 end

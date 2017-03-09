@@ -1,5 +1,3 @@
-#require 'page-object'
-
 class LoginPage
 
 ############################################################################################
@@ -16,6 +14,14 @@ class LoginPage
     sign_in.click
   end
 
+  def click_sign_in_button
+    sign_in_button.click
+  end
+
+  def check_alert_message(message)
+    raise "Expected: #{message}\n Result: #{alert_message}" unless alert_message == message    
+  end
+
 ############################################################################################
 ### Locators                                                                             ###
 ############################################################################################
@@ -30,6 +36,18 @@ class LoginPage
 
   def sign_in
     $browser.link(text: 'Sign In')
+  end
+
+  def sign_in_button
+    $browser.button(:name => 'commit')
+  end
+
+  def alert_message
+    if $browser.div(:class => 'alert alert-info').exist?
+      $browser.div(:class => 'alert alert-info').text
+    else
+      raise "Login message not found"
+    end
   end
 
 end
